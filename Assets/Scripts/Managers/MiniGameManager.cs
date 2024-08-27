@@ -7,6 +7,9 @@ public class MiniGameManager : MonoBehaviour
     public static MiniGameManager Instance;
     public List<MiniGameBase> miniGamesList;
     private int currentMiniGameIndex = 0;
+    public delegate void MiniGameResult();
+    public event MiniGameResult OnMiniGameCompleted;
+    public event MiniGameResult OnMiniGameFailed;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -72,5 +75,14 @@ public class MiniGameManager : MonoBehaviour
         GameManager.Instance.EndGame();
 
 
+    }
+    public void CompleteMiniGame()
+    {
+        OnMiniGameCompleted?.Invoke();
+    }
+
+    public void FailMiniGame()
+    {
+        OnMiniGameFailed?.Invoke();
     }
 }
