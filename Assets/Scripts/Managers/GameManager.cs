@@ -6,7 +6,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartGame();
+        }
+    }
     private void Awake()
     {
         if(Instance == null)
